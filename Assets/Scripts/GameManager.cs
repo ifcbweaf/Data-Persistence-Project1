@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static GameManager Instance;
+    
+    public List<string> userName;
+    public List<int> bestScore;
 
-    // Update is called once per frame
-    void Update()
+    public string tempUserName = "";
+
+    private void Awake()
     {
-        
+        if (Instance ==  null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
