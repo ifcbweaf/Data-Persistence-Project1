@@ -83,6 +83,7 @@ public class MainManager : MonoBehaviour
                     if (m_Points > gameManagerScript.bestScore[gameManagerScript.userName.IndexOf(item)])
                     {
                         gameManagerScript.bestScore[gameManagerScript.userName.IndexOf(item)] = m_Points;
+                        gameManagerScript.SaveDataToJSON();
                     }
                     alreadyHaveUser = true;
                     break;
@@ -94,6 +95,7 @@ public class MainManager : MonoBehaviour
         {
             gameManagerScript.userName.Add(gameManagerScript.tempUserName);
             gameManagerScript.bestScore.Add(m_Points);
+            gameManagerScript.SaveDataToJSON();
         }
 
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -10,21 +8,25 @@ using UnityEditor;
 public class MenuUIManager : MonoBehaviour
 {
     public GameManager gameManagerScript;
-    
+
     public InputField nameInputField;
     public Text bestScoreText;
 
     private void Awake()
     {
-        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManagerScript = GameManager.Instance;
         nameInputField.text = gameManagerScript.tempUserName;
         SetBestScoreText();
+        gameManagerScript.LoadFileFromJSON();
     }
 
     //switch to main scene
     public void SwitchToMainScene()
     {
-        SceneManager.LoadScene("main");
+        if (nameInputField.text != "")
+        {
+            SceneManager.LoadScene("main");
+        }
     }
 
     //quits game or exit playmode if unity editor
